@@ -8,7 +8,7 @@ st.markdown(':icecream:Vanilla Ice Cream')
 st.markdown('---')
 st.markdown('Rs. 20')
 st.text('Vanilla Ice Cream \t\t\t\t Rs. 20')
-st.markdown(':shaved_ice:Shaved Ice'),
+st.markdown('🍧Shaved Ice')
 st.text('\t\t\t\t Rs. 25')
 st.text(':cake:Strawberry Cake \t\t\t\t Rs. 55')
 st.text(':birthday:Chocolate Cake \t\t\t\t Rs. 65')
