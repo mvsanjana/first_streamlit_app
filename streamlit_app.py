@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.title('Sanjana\'s Dessert Corner:ice_cream:')
+st.title('Sanjana\'s Sweet Corner🍯')
 
 #Dessert
-st.header('Today\'s Dessert Menu')
+st.header('Today\'s Dessert Menu🍨')
 
 st.text('🍦Vanilla Ice Cream\t\t\t\t\tRs. 20')
 st.text('🍧Shaved Ice\t\t\t\t\t\tRs. 25')
@@ -16,5 +16,7 @@ st.text('🥧Apple Pie\t\t\t\t\t\tRs. 35')
 
 #Fruit
 import pandas as pd
+st.write('#')
+st.header('Build your own Fruit Smoothie🍎')
 fruit_df_list=pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
 st.dataframe(fruit_df_list)
