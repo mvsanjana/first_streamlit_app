@@ -4,7 +4,7 @@ st.title('Sanjana\'s Dessert Corner:ice_cream:')
 
 st.header('Today\'s Dessert Menu')
 
-st.markdown(':icecream:Vanilla Ice Cream ## Rs. 20')
+st.markdown(':icecream:Vanilla Ice Cream                              Rs. 20')
 st.text('Vanilla Ice Cream \t\t\t\t Rs. 20')
 st.text(':shaved_ice:Shaved Ice \t\t\t\t Rs. 25')
 st.text(':cake:Strawberry Cake \t\t\t\t Rs. 55')
