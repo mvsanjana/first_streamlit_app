@@ -14,6 +14,9 @@ st.text('🍩Choco glazed Doughnut\t\t\t\t\tRs. 20')
 st.text('🧁Chocolate Cupcake with Strawberry frosting\t\tRs. 35')
 st.text('🥧Apple Pie\t\t\t\t\t\tRs. 35')
 
+# Let's put a pick list here so they can pick the fruit they want to include 
+streamlit.multiselect("Pick some fruits: ",list(fruit_df_list.index))
+
 #Fruit
 import pandas as pd
 st.write('#')
