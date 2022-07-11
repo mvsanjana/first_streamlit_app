@@ -23,5 +23,8 @@ fruit_df_list=pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw
 # Let's put a pick list here so they can pick the fruit they want to include 
 fruit_df_list=fruit_df_list.set_index('Fruit')
 #st.multiselect("Pick some fruits: ",list(fruit_df_list.index))
-st.multiselect("Pick some fruits: ",list(fruit_df_list.index),['Watermelon','Strawberries'])
-st.dataframe(fruit_df_list)
+#st.multiselect("Pick some fruits: ",list(fruit_df_list.index),['Watermelon','Strawberries'])
+selected_fruit_list=st.multiselect("Pick some fruits: ",list(fruit_df_list.index),['Watermelon','Strawberries'])
+fruits_to_show=fruit_df_list.loc[selected_fruit_list]
+#st.dataframe(fruit_df_list)
+st.dataframe(fruits_to_show)
