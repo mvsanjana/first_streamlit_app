@@ -47,3 +47,7 @@ import requests as rqs
 fruit_choice = st.text_input('What fruit would you like information about?','Kiwi')
 st.write('The user entered ', fruit_choice)
 fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/"+fruit_choice)
+#Take the json version and normalize it (Means, convert semi-structured json data to flat table; keys act as columns, values as rows
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+#Output as a table on the screen
+st.dataframe(fruityvice_normalized)
