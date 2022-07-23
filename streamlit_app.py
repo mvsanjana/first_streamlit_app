@@ -30,8 +30,15 @@ fruits_to_show=fruit_df_list.loc[selected_fruit_list]
 st.dataframe(fruits_to_show)
 
 #New section to display fruityvice API response
+st.write('#')
 st.header('Fruityvice Fruit Advice!!🍎🤗')
 import requests as rqs
 fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/watermelon")
 #st.text(fruityvice_response)  #Gives Response Code: <Response [200]> instead of watermelon data
 st.text(fruityvice_response.json())
+
+#Display in a more beautified format on streamlit
+#Take the json version and normalize it (Means, convert semi-structured json data to flat table; keys act as columns, values as rows
+fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+#Output as a table on the screen
+streamlit.dataframe(fruityvice_normalized)
