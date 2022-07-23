@@ -33,12 +33,17 @@ st.dataframe(fruits_to_show)
 st.write('#')
 st.header('Fruityvice Fruit Advice!!🍎🤗')
 import requests as rqs
-fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/watermelon")
+#fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/watermelon")
 #st.text(fruityvice_response)  #Gives Response Code: <Response [200]> instead of watermelon data
-st.text(fruityvice_response.json())
+#st.text(fruityvice_response.json())   #Displays in json format, not in the form of a table
 
 #Display in a more beautified format on streamlit
 #Take the json version and normalize it (Means, convert semi-structured json data to flat table; keys act as columns, values as rows
-fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+#fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 #Output as a table on the screen
-st.dataframe(fruityvice_normalized)
+#st.dataframe(fruityvice_normalized)
+
+#Add a Text Entry Box and Send the Input to Fruityvice as Part of the API Call
+fruit_choice = streamlit.text_input('What fruit would you like information about?','Kiwi')
+streamlit.write('The user entered ', fruit_choice)
+fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/"+fruit_choice)
