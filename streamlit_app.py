@@ -39,6 +39,6 @@ st.text(fruityvice_response.json())
 
 #Display in a more beautified format on streamlit
 #Take the json version and normalize it (Means, convert semi-structured json data to flat table; keys act as columns, values as rows
-fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 #Output as a table on the screen
-streamlit.dataframe(fruityvice_normalized)
+st.dataframe(fruityvice_normalized)
