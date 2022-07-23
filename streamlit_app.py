@@ -29,7 +29,9 @@ fruits_to_show=fruit_df_list.loc[selected_fruit_list]
 #st.dataframe(fruit_df_list)
 st.dataframe(fruits_to_show)
 
-#Get Watermelon data using FDC API into Streamlit.io
+#New section to display fruityvice API response
+st.header('Fruityvice Fruit Advice!!🍎🤗')
 import requests as rqs
 fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/watermelon")
-st.text(fruityvice_response)
+#st.text(fruityvice_response)  #Gives Response Code: <Response [200]> instead of watermelon data
+st.text(fruityvice_response.json())
