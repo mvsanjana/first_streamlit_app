@@ -53,10 +53,18 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 #Output as a table on the screen
 st.dataframe(fruityvice_normalized)
 
-#Test connection to Snowflake from Streamlit
+#Test connection to Snowflake from Streamlit by querying Snowflake account details
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 my_data_row = my_cur.fetchone()
 st.text("Hello from Snowflake:")
+st.text(my_data_row)
+
+#Query data from Snowflake fruit_load_list
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("select * from fruit_load_list")
+my_data_row = my_cur.fetchone()
+st.text("The fruit load list contains: ")
 st.text(my_data_row)
