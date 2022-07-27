@@ -52,3 +52,11 @@ fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/"+fruit_choice)
 fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 #Output as a table on the screen
 st.dataframe(fruityvice_normalized)
+
+#Test connection to Snowflake from Streamlit
+my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+my_cur = my_cnx.cursor()
+my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+my_data_row = my_cur.fetch()
+st.text("Hello from Snowflake:")
+st.text(my_data_row)
