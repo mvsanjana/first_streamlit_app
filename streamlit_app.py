@@ -1,4 +1,5 @@
 import streamlit as st
+import snowflake.connector
 
 st.title('Sanjana\'s Sweet Corner🍯')
 
