@@ -75,3 +75,6 @@ st.dataframe(my_data_rows)
 #Add another text box and display the fruit entered in the box
 fruit_add = st.text_input('What fruit would you like to add?','Kiwi')
 st.write('Thanks for adding ',fruit_add)
+
+#Check if insertion from streamlit into fruit_load_list in Snowflake will work. Interact with all the text/selection boxes in the app
+my_cur.execute("insert into fruit_load_list values('from streamlit')");    #This line will highlight issue with Control of Flow
