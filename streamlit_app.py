@@ -1,5 +1,8 @@
 import streamlit as st
+import pandas as pd
+import requests as rqs
 import snowflake.connector
+from urllib.erro import URLError
 
 st.title('Sanjana\'s Sweet Corner🍯')
 
@@ -16,7 +19,7 @@ st.text('🧁Chocolate Cupcake with Strawberry frosting\t\tRs. 35')
 st.text('🥧Apple Pie\t\t\t\t\t\tRs. 35')
 
 #Fruit
-import pandas as pd
+#import pandas as pd
 st.write('#')
 st.header('Build your own Fruit Smoothie🍎')
 fruit_df_list=pd.read_csv("https://uni-lab-files.s3.us-west-2.amazonaws.com/dabw/fruit_macros.txt")
@@ -31,9 +34,9 @@ fruits_to_show=fruit_df_list.loc[selected_fruit_list]
 st.dataframe(fruits_to_show)
 
 #New section to display fruityvice API response
+#import requests as rqs
 st.write('#')
 st.header('Fruityvice Fruit Advice!!🍎🤗')
-import requests as rqs
 #fruityvice_response = rqs.get("https://fruityvice.com/api/fruit/watermelon")
 #st.text(fruityvice_response)  #Gives Response Code: <Response [200]> instead of watermelon data
 #st.text(fruityvice_response.json())   #Displays in json format, not in the form of a table
@@ -53,7 +56,10 @@ fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
 #Output as a table on the screen
 st.dataframe(fruityvice_normalized)
 
+#Don't let execution past this point (Stop Snowflake execution). Only till Fruityvice part
+st.stop()
 #Test connection to Snowflake from Streamlit by querying Snowflake account details
+#import snowflake.connector
 my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
 my_cur = my_cnx.cursor()
 my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
