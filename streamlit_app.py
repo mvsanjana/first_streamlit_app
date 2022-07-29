@@ -122,7 +122,8 @@ if st.button('Get Fruit Load List'):
 #Allow the end user to add a fruit to the list
 def insert_new_row_snowflake(new_fruit, cnx):
   with cnx.cursor() as cur:
-    cur.execute("insert into fruit_load_list values('from streamlit')");
+    #cur.execute("insert into fruit_load_list values('from streamlit')");
+    cur.execute("insert into fruit_load_list values('"+new_fruit+"')");
     return "Thanks for adding "+new_fruit
 
 #Add a button to insert row into snowflake
