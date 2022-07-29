@@ -83,6 +83,7 @@ except URLError as e:
 #my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
 #my_data_row = my_cur.fetchone()
+#my_cnx.close()
 #st.text("Hello from Snowflake:")
 #st.text(my_data_row)
 
@@ -92,6 +93,7 @@ except URLError as e:
 #my_cur.execute("select * from fruit_load_list")
 ##my_data_row = my_cur.fetchone()
 #my_data_rows = my_cur.fetchall()
+#my_cnx.close()
 #st.header("The fruit load list contains: ")
 #st.text(my_data_row)
 #st.dataframe(my_data_row)
@@ -108,6 +110,7 @@ def get_fruit_load_list(cnx):
 if st.button('Get Fruit Load List'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   my_data_rows = get_fruit_load_list(my_cnx)
+  my_cnx.close()
   st.dataframe(my_data_rows)
 
 #Don't let execution past this point (Stop Snowflake execution). Only till Fruityvice part
@@ -131,4 +134,5 @@ fruit_add = st.text_input('What fruit would you like to add?')
 if st.button('Add a Fruit to the List'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   add_row = insert_new_row_snowflake(fruit_add, my_cnx)
+  my_cnx.close()
   st.text(add_row)
