@@ -76,27 +76,42 @@ except URLError as e:
   st.error()
 
 #Don't let execution past this point (Stop Snowflake execution). Only till Fruityvice part
-st.stop()
+#st.stop()
 #Test connection to Snowflake from Streamlit by querying Snowflake account details
 #import snowflake.connector
-my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_data_row = my_cur.fetchone()
-st.text("Hello from Snowflake:")
-st.text(my_data_row)
+#my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+#my_cur = my_cnx.cursor()
+#my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
+#my_data_row = my_cur.fetchone()
+#st.text("Hello from Snowflake:")
+#st.text(my_data_row)
 
 #Query data from Snowflake fruit_load_list
-my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("select * from fruit_load_list")
-#my_data_row = my_cur.fetchone()
-my_data_rows = my_cur.fetchall()
-st.text("The fruit load list contains: ")
+#my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+#my_cur = my_cnx.cursor()
+#my_cur.execute("select * from fruit_load_list")
+##my_data_row = my_cur.fetchone()
+#my_data_rows = my_cur.fetchall()
+#st.header("The fruit load list contains: ")
 #st.text(my_data_row)
 #st.dataframe(my_data_row)
-st.dataframe(my_data_rows)
+#st.dataframe(my_data_rows)
 
+st.header("The fruit load list contains: ")
+#Snowflake related functions
+def get_fruit_load_list(cnx):
+  with cnx.cursor() as cur:
+    cur.execute("select * from fruit_load_list")
+    return cur.fetchall()
+  
+#Add a button to load the fruit
+if st.button('Get Fruit Load List'):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  my_data_rows = get_fruit_load_list(my_cnx)
+  st.dataframe(my_data_rows)
+
+#Don't let execution past this point (Stop Snowflake execution). Only till Fruityvice part
+st.stop()
 #Add another text box and display the fruit entered in the box
 fruit_add = st.text_input('What fruit would you like to add?','Kiwi')
 st.write('Thanks for adding ',fruit_add)
