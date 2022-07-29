@@ -111,10 +111,23 @@ if st.button('Get Fruit Load List'):
   st.dataframe(my_data_rows)
 
 #Don't let execution past this point (Stop Snowflake execution). Only till Fruityvice part
-st.stop()
+#st.stop()
 #Add another text box and display the fruit entered in the box
-fruit_add = st.text_input('What fruit would you like to add?','Kiwi')
-st.write('Thanks for adding ',fruit_add)
+#fruit_add = st.text_input('What fruit would you like to add?','Kiwi')
+#st.write('Thanks for adding ',fruit_add)
 
-#Check if insertion from streamlit into fruit_load_list in Snowflake will work. Interact with all the text/selection boxes in the app
-my_cur.execute("insert into fruit_load_list values('from streamlit')");    #This line will highlight issue with Control of Flow
+#Check if insertion to fruit_load_list in Snowflake works. Interact with all the text/selection boxes in the app. This will highlight issue with Control of Flow.
+#my_cur.execute("insert into fruit_load_list values('from streamlit')") #This will not go correctly bu just go with it for now
+
+#Allow the end user to add a fruit to the list
+def insert_new_row_snowflake(new_fruit, cnx):
+  with cnx.cursor() as cur:
+    cur.execute("insert into fruit_load_list values('from streamlit')");
+    return "Thanks for adding "+new_fruit
+
+#Add a button to insert row into snowflake
+fruit_add = st.text_input('What fruit would you like to add?')
+if st.button('Add a Fruit to the List'):
+  my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
+  add_row = insert_new_row_snowflake(fruit_add, my_cnx)
+  st.text(add_row)
