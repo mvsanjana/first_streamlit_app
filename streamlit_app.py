@@ -99,7 +99,8 @@ except URLError as e:
 #st.dataframe(my_data_row)
 #st.dataframe(my_data_rows)
 
-st.header("The fruit load list contains: ")
+#st.header("The fruit load list contains: ")
+st.header("View our Fruit List - Add your Favourites!")
 #Snowflake related functions
 def get_fruit_load_list(cnx):
   with cnx.cursor() as cur:
@@ -107,7 +108,8 @@ def get_fruit_load_list(cnx):
     return cur.fetchall()
   
 #Add a button to load the fruit
-if st.button('Get Fruit Load List'):
+#if st.button('Get Fruit Load List'):
+if st.button('Get Fruit List'):
   my_cnx = snowflake.connector.connect(**st.secrets["snowflake"])
   my_data_rows = get_fruit_load_list(my_cnx)
   my_cnx.close()
